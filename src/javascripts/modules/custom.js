@@ -1,4 +1,3 @@
-
 jQuery(function ($) {
   var url = location.pathname + location.search;
 

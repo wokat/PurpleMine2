@@ -7,11 +7,11 @@ $brand-primary: $blue;
 $body-bottom-padding: 65px;
 
 $top-menu-bg: #464D5F;
-$top-menu-text: $brand-text;
-$top-menu-link: $brand-text;
+$top-menu-text: #fff;
+$top-menu-link: #fff;
 
 $logo-image-width: 35px;
 $logo-image-height: 35px;
 $logo-position-horizontal: 20px;
 
-$panel-color: $gray-900;
+$panel-color: shade($gray, 900);

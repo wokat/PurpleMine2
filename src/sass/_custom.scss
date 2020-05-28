@@ -152,6 +152,7 @@
 }
 
 #sidebar {
+
   h3,
   .wiki h3 {
     margin-top: $line-height-computed * 1.5;
@@ -162,6 +163,13 @@
   > .wiki > p:first-child {
     @extend .flash;
     @extend .warning;
+  }
+
+  .wiki .pages-hierarchy {
+
+    .pages-hierarchy {
+      border-left: 0;
+    }
   }
 }
 
@@ -427,6 +435,10 @@ span.private {
     right: 0;
     z-index: 9999;
 
+    h1 {
+      background-size: $logo-image-width $logo-image-height;
+    }
+
     &::after {
       display: block;
       position: absolute;
@@ -564,6 +576,10 @@ span.private {
   }
 }
 
+#project-jump .drdn-trigger {
+  padding-right: 20px;
+}
+
 #search-form {
 
   a.icon-checked[onclick] {
@@ -574,7 +590,9 @@ span.private {
   }
 }
 
-#topmenu {
+#top-menu {
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   ul {
 
@@ -605,6 +623,10 @@ span.private {
   }
 
   a {
+
+    &.user {
+      color: shade($blue, 300);
+    }
 
     &.administration {
       color: shade($blue, 300);
@@ -648,7 +670,7 @@ div.wiki {
   #wiki_extentions_header {
     display: block;
     border: 1px solid $gray-400;
-    background: #fff;
+    background-color: $toc-bg;
     border-radius: 3px;
     float: none;
     width: auto;
@@ -657,6 +679,7 @@ div.wiki {
     padding-top: 10px;
     min-height: 150px;
     position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
 
     > p {
       padding: 0 15px;
@@ -670,9 +693,13 @@ div.wiki {
     .toc {
       color: $text-color;
       padding: 0 15px;
-      margin: 1px;
+      margin: 0;
       border: 0;
       border-radius: 2px;
+      font-size: inherit;
+      max-width: 90%;
+      width: 90%;
+      box-shadow: none;
 
       > li:first-child {
         padding-bottom: 3px;
