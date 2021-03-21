@@ -172,6 +172,69 @@ jQuery(function ($) {
       }, '/issues');
     });
   }
+
+  $('#top-menu, #main-menu').find('a[href$="/wiki"]').each(function (i, link) {
+    link = $(link);
+
+    var storageKey = 'wikiFlyouts';
+    var storage = localStorage;
+    var respectiveWikiUrl = link.attr('href');
+    var flyout = $('<div class="wiki-flyout">');
+    var storedMenus = JSON.parse(storage.getItem(storageKey) || '{}');
+    var storedMenu = storedMenus[respectiveWikiUrl];
+
+    var appendFlyout = function (html) {
+      var anchor = $('<div class="wiki-flyout-anchor">');
+      flyout.html(html);
+      var nav = flyout.find('.collapsible-nav').detach();
+      // no briefings flyouts
+      nav.find('> li:has(a:contains(Briefings))').remove();
+      // no listing sub-items inside obsolete items
+      nav.find('a:contains(Veraltete) + .pages-hierarchy').remove();
+      flyout.empty();
+      nav.appendTo(flyout);
+      anchor.append(flyout).insertAfter(link);
+    };
+
+    var timeoutChange = null;
+    var changeMenu = function (state) {
+      clearTimeout(timeoutChange);
+
+      timeoutChange = setTimeout(function () {
+        link.parent().toggleClass('flyout-active', state);
+      }, 200);
+    };
+
+    link.add(flyout).on('mouseenter', function () {
+      changeMenu(true);
+    });
+
+    link.add(flyout).on('mouseleave', function () {
+      changeMenu(false);
+    });
+
+    if (storedMenu && storedMenu.expires > new Date().getTime()) {
+      appendFlyout(storedMenu.html);
+
+      return;
+    }
+
+    $.ajax({
+      url: respectiveWikiUrl,
+      dataType: 'text',
+      success: function (html) {
+        html = html.replace(/^[\s\S]+?<div id="sidebar">|<div id="content">[\s\S]+?$/g, '');
+
+        storedMenus[respectiveWikiUrl] = {
+          expires: new Date().getTime() + 1800 * 1000,
+          html: html
+        }
+        storage.setItem(storageKey, JSON.stringify(storedMenus));
+
+        appendFlyout(html);
+      }
+    });
+  });
 });
 
 jQuery(function ($) {
