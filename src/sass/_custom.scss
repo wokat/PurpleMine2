@@ -638,7 +638,6 @@ span.private {
   }
 }
 
-
 #main-menu {
 
   &.tabs {
@@ -657,6 +656,81 @@ span.private {
         }
       }
     }
+  }
+}
+
+#top-menu,
+#header {
+
+  .wiki-flyout-anchor {
+    position: relative;
+    display: none;
+
+    .wiki-flyout {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 20px 20px 20px;
+      opacity: .96;
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        display: block;
+        float: none;
+        line-height: 1.5em;
+      }
+
+      > ul {
+        display: flex;
+        flex-direction: row;
+
+        > li {
+          padding-right: 20px;
+          flex: 1;
+
+          a {
+            display: block;
+            font-weight: normal;
+          }
+
+          > a {
+            font-weight: bold;
+          }
+
+          > ul {
+            columns: 2;
+          }
+        }
+      }
+    }
+  }
+
+  &#top-menu .wiki-flyout {
+    background: $top-menu-bg;
+    top: 20px;
+
+    a {
+      color: $top-menu-link;
+    }
+  }
+
+  &#header .wiki-flyout {
+    background: $main-menu-bg;
+    top: 117px;
+    border-bottom: 1px solid $main-menu-border;
+
+    a {
+      color: $main-menu-link;
+    }
+  }
+
+  li.flyout-active > .wiki-flyout-anchor {
+    display: block;
   }
 }
 
