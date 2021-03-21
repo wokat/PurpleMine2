@@ -624,11 +624,11 @@ span.private {
 
   a {
 
-    &.user {
+    &[href*="/mitho-intern/wiki"] {
       color: shade($blue, 300);
     }
 
-    &.administration {
+    &.user {
       color: shade($blue, 300);
     }
 
