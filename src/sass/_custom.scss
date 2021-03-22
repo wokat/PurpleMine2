@@ -244,10 +244,48 @@ span.private {
         width: 24em;
         text-align: center;
       }
+
+      .wiki-anchor {
+        display: none;
+      }
     }
 
     .flash {
       order: -2;
+    }
+
+    #login-form-openid {
+      box-sizing: border-box;
+      width: 24em;
+      padding: 20px;
+      border: 1px solid #dae3e6;
+      border-radius: 3px;
+      background-color: #f9fbfb;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 7%), 0 3px 8px rgb(0 0 0 / 4%);
+      margin-top: 2em;
+
+      @media all and (max-width: 599px) {
+        width: 100%;
+      }
+
+      &::before {
+        content: "Login mit mitho®";
+        display: block;
+        font-weight: $font-weight-bold;
+        margin-bottom: 5px;
+      }
+
+      #login-submit-openid {
+        display: block;
+        width: 100%;
+        padding: 6px 0;
+        border-left: 5px solid transparent;
+        background-image: url(../images/mitho-sso.png);
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: auto 100%;
+        margin: 0;
+      }
     }
   }
 }
@@ -593,13 +631,6 @@ span.private {
 #top-menu {
   padding-top: 5px;
   padding-bottom: 5px;
-
-  ul {
-
-    li {
-      margin-right: .8em;
-    }
-  }
 
   > ul {
 
