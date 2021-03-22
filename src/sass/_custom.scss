@@ -216,45 +216,93 @@ span.private {
 }
 
 
-.controller-account.action-login {
+.controller-account {
 
-  #header {
+  &.action-login {
 
-    h1 {
+    #header {
 
-      @media screen and (max-width: $redmine-responsive-max) {
-        display: block !important;
-        white-space: nowrap;
-        overflow: hidden;
-        color: $blue;
+      h1 {
+
+        @media screen and (max-width: $redmine-responsive-max) {
+          display: block !important;
+          white-space: nowrap;
+          overflow: hidden;
+          color: $blue;
+        }
+      }
+    }
+
+    #content {
+      display: flex;
+      flex-direction: column;
+
+      .login-additionals {
+        order: -1;
+        max-width: none;
+        width: auto;
+
+        @media screen and (min-width: 599px) {
+          width: 24em;
+          text-align: center;
+        }
+
+        h2 {
+          margin: 1em auto 0.5em auto;
+
+          @media screen and (min-width: 599px) {
+            margin-bottom: 0;
+          }
+        }
+
+        .wiki-anchor {
+          display: none;
+        }
+      }
+
+      .flash {
+        order: -2;
+      }
+
+      #login-form-openid {
+        box-sizing: border-box;
+        width: 24em;
+        padding: 20px;
+        border: 1px solid #dae3e6;
+        border-radius: 3px;
+        background-color: #f9fbfb;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 7%), 0 3px 8px rgb(0 0 0 / 4%);
+        margin-top: 2em;
+
+        @media all and (max-width: 599px) {
+          width: 100%;
+        }
+
+        &::before {
+          content: "Login mit mitho®";
+          display: block;
+          font-weight: $font-weight-bold;
+          margin-bottom: 5px;
+        }
+
+        #login-submit-openid {
+          display: block;
+          width: 100%;
+          padding: 6px 0;
+          border-left: 5px solid transparent;
+          background-image: url(../images/mitho-sso.png);
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: auto 100%;
+          margin: 0;
+        }
       }
     }
   }
 
-  #content {
-    display: flex;
-    flex-direction: column;
+  &.action-oic_local_logout {
 
-    .login-additionals {
-      order: -1;
-      max-width: none;
-      width: auto;
-
-      @media screen and (min-width: 599px) {
-        width: 24em;
-        text-align: center;
-      }
-
-      .wiki-anchor {
-        display: none;
-      }
-    }
-
-    .flash {
-      order: -2;
-    }
-
-    #login-form-openid {
+    .oic-logged-out {
       box-sizing: border-box;
       width: 24em;
       padding: 20px;
@@ -262,33 +310,15 @@ span.private {
       border-radius: 3px;
       background-color: #f9fbfb;
       box-shadow: 0 1px 2px rgb(0 0 0 / 7%), 0 3px 8px rgb(0 0 0 / 4%);
-      margin-top: 2em;
+      margin: 2em auto 3em auto;
 
       @media all and (max-width: 599px) {
         width: 100%;
       }
-
-      &::before {
-        content: "Login mit mitho®";
-        display: block;
-        font-weight: $font-weight-bold;
-        margin-bottom: 5px;
-      }
-
-      #login-submit-openid {
-        display: block;
-        width: 100%;
-        padding: 6px 0;
-        border-left: 5px solid transparent;
-        background-image: url(../images/mitho-sso.png);
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: auto 100%;
-        margin: 0;
-      }
     }
   }
 }
+
 
 
 // Redmine Mentions
