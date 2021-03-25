@@ -171,6 +171,26 @@
       border-left: 0;
     }
   }
+
+  .dashboards {
+
+    .global,
+    .project {
+
+      .dashboard {
+        padding-left: 35px;
+      }
+
+      span[class*="dashboard-"] {
+        display: block;
+        padding: 0;
+        height: 0;
+        position: relative;
+        top: -24px;
+        left: 15px;
+      }
+    }
+  }
 }
 
 #footer {
