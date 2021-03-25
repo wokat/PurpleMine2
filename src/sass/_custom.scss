@@ -484,57 +484,134 @@ span.private {
   }
 }
 
+#top-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+#header {
+  position: fixed;
+  height: 50px;
+  margin-top: 0;
+  top: 27px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  h1 {
+    background-size: $logo-image-width $logo-image-height;
+  }
+
+  &::after {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 39px;
+    width: 100%;
+    z-index: 0;
+    background: $main-menu-bg;
+    border-bottom: 1px solid $main-menu-border;
+  }
+
+  #main-menu {
+    z-index: 1;
+  }
+}
+
+#main {
+  padding-top: 117px;
+}
+
+.banner_area {
+  // to overlay #main
+  z-index: 1;
+
+  .wiki-anchor {
+    display: none !important;
+  }
+
+  .banner {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .banner_edit {
+    z-index: 0;
+
+    // extra class for more weight...
+    .theme-Purplemine2 & {
+      bottom: 10px;
+    }
+
+    a {
+      display: inline-block;
+      padding: 2px 7px 4px 26px;
+      background: rgba(0, 0, 0, 0.15);
+      line-height: 1;
+      text-decoration: none;
+      border-radius: 2px;
+
+      &.banner-icon-edit::before {
+        position: relative;
+        top: 2px;
+      }
+
+      &.banner-icon-off::before {
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
+
+  // banners are placed inside #content on narrower screens
+  #content > & {
+    order: -2;
+    margin-top: -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+
+    .banner {
+      border-top: 0;
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+  }
+
+  // banners are placed inside #body for footer
+  body > & {
+
+    .banner {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    ~ .additionals-footer {
+      border-top: 0;
+    }
+  }
+
+  // banners are placed after #top_content on wider screens
+  #top-menu + & {
+    top: 117px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+}
+
 .theme-Purplemine2 {
-
-  #top-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 10000;
-  }
-
-  #header {
-    position: fixed;
-    height: 50px;
-    margin-top: 0;
-    top: 27px;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-
-    h1 {
-      background-size: $logo-image-width $logo-image-height;
-    }
-
-    &::after {
-      display: block;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      height: 39px;
-      width: 100%;
-      z-index: 0;
-      background: $main-menu-bg;
-      border-bottom: 1px solid $main-menu-border;
-    }
-
-    #main-menu {
-      z-index: 1;
-    }
-  }
-
-  #main {
-    padding-top: 117px;
-  }
 
   .gotobottom,
   .gototop {
-    @include fa-icon();
-
     display: block;
     background: $top-menu-bg;
-    color: $top-menu-bg;
     width: 40px;
     height: 40px;
     position: fixed;
@@ -543,12 +620,12 @@ span.private {
     z-index: 9998;
     overflow: hidden;
     padding: 0;
-    font-size: 30px;
-    text-align: center;
-    line-height: 40px;
     border-radius: 2px;
-    opacity: 0.5;
     border: 0;
+    opacity: 0.5;
+    color: $white;
+    text-decoration: none;
+    margin: 0;
 
     &:hover,
     &:focus {
@@ -556,9 +633,16 @@ span.private {
     }
 
     &::before {
+      @include fa-icon();
+
+      text-align: center;
+      opacity: 1;
+      line-height: 40px;
+      font-size: 30px;
       content: $fa-var-chevron-up;
       display: block;
-      color: $white;
+      padding: 0;
+      font-weight: $font-weight-normal;
     }
   }
 
@@ -569,80 +653,81 @@ span.private {
       content: $fa-var-chevron-down;
     }
   }
+}
 
-  .cross-links {
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
-    white-space: nowrap;
-    text-align: left;
-    z-index: 1002;
+.cross-links {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  white-space: nowrap;
+  text-align: left;
+  z-index: 1002;
 
-    .cross-link {
-      float: left;
-      clear: left;
-      background: $blue;
-      color: $white;
-      padding: 0 10px;
-      font-size: 12px;
-      text-align: center;
-      line-height: 22px;
-      border-radius: 2px;
-      opacity: 0.6;
-      text-decoration: none;
-      margin-left: 10px;
-      margin-bottom: 10px;
-      overflow: hidden;
-      max-width: 200px;
-      text-overflow: ellipsis;
+  .cross-link {
+    float: left;
+    clear: left;
+    background: $blue;
+    color: $white;
+    padding: 0 10px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 2px;
+    opacity: 0.6;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    max-width: 200px;
+    text-overflow: ellipsis;
+
+    .label-prefix {
+      display: none;
+      font-weight: normal;
+    }
+
+    @media screen and (min-width: $redmine-responsive-min) {
+      font-size: 14px;
+      line-height: 30px;
 
       .label-prefix {
-        display: none;
-        font-weight: normal;
-      }
-
-      @media screen and (min-width: $redmine-responsive-min) {
-        font-size: 14px;
-        line-height: 30px;
-
-        .label-prefix {
-          display: inline;
-        }
-      }
-
-      &:hover,
-      &:focus {
-        opacity: 1;
-      }
-
-      &::before {
-        @include fa-icon();
-
-        font-size: inherit;
-        padding-right: 5px;
-        content: $fa-var-book;
-      }
-
-      &.type-ticket::before {
-        content: $fa-var-ticket;
+        display: inline;
       }
     }
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    &::before {
+      @include fa-icon();
+
+      font-size: inherit;
+      padding-right: 5px;
+      content: $fa-var-book;
+    }
+
+    &.type-ticket::before {
+      content: $fa-var-ticket;
+    }
   }
+}
 
-  @media screen and (max-width: $redmine-responsive-max) {
+@media screen and (max-width: $redmine-responsive-max) {
 
-    .flyout-menu + div {
+  .flyout-menu + div {
 
-      #header {
-        top: 0;
+    #header {
+      top: 0;
 
-        &::after {
-          display: none;
-        }
+      &::after {
+        display: none;
       }
     }
   }
 }
+
 
 #project-jump .drdn-trigger {
   padding-right: 20px;
