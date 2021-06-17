@@ -153,6 +153,11 @@
 
 #sidebar {
 
+  > script:first-child + h3,
+  > script:first-child + form > h3 {
+    margin-top: $line-height-computed * .25;
+  }
+
   h3,
   .wiki h3 {
     margin-top: $line-height-computed * 1.5;
@@ -478,6 +483,12 @@ span.private {
   #sidebar {
     // hide ugly hard-coded texts
     visibility: hidden;
+
+    > h3 + ul + #tags,
+    > #attributes:first-child,
+    > #duplicates:first-child {
+      margin-top: -25px;
+    }
 
     > * {
       visibility: visible;
